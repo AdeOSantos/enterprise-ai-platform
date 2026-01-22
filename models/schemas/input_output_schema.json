@@ -1,0 +1,22 @@
+{
+  "input": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "feature1": {"type": "number"},
+        "feature2": {"type": "number"},
+        "feature3": {"type": "number"}
+      },
+      "required": ["feature1", "feature2", "feature3"]
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "prediction": {"type": "number"},
+      "probability": {"type": "number"},
+      "model_version": {"type": "string"}
+    }
+  }
+}
