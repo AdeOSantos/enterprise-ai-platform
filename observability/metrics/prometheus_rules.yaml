@@ -1,0 +1,25 @@
+groups:
+  - name: model_serving
+    interval: 30s
+    rules:
+      - record: prediction_latency_p95
+        expr: histogram_quantile(0.95, rate(prediction_duration_seconds_bucket[5m]))
+      
+      - record: prediction_error_rate
+        expr: rate(prediction_errors_total[5m])
+      
+      - alert: HighPredictionLatency
+        expr: prediction_latency_p95 > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High prediction latency detected"
+      
+      - alert: HighErrorRate
+        expr: prediction_error_rate > 0.05
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High prediction error rate"

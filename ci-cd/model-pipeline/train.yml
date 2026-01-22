@@ -1,0 +1,14 @@
+name: Model Training Pipeline
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Train model
+        run: echo "Training model..."

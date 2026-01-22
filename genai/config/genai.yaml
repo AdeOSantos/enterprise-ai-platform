@@ -1,0 +1,22 @@
+llm:
+  provider: "openai"
+  model: "gpt-4"
+  temperature: 0.7
+  max_tokens: 1000
+
+prompts:
+  template_path: "genai/prompt-engineering/templates/"
+  version: "v1"
+
+agents:
+  max_iterations: 5
+  timeout_seconds: 30
+
+cost_limits:
+  max_cost_per_request: 0.10
+  daily_budget: 100.00
+
+monitoring:
+  log_prompts: true
+  track_costs: true
+  track_latency: true

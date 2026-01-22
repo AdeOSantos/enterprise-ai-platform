@@ -1,0 +1,14 @@
+model_quality_gates:
+  accuracy:
+    min: 0.85
+    baseline: 0.90
+  precision:
+    min: 0.80
+  recall:
+    min: 0.80
+  f1_score:
+    min: 0.82
+  
+performance:
+  max_latency_ms: 100
+  max_memory_mb: 512

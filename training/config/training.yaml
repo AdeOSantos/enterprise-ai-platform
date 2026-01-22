@@ -1,0 +1,19 @@
+training:
+  model_type: "random_forest"
+  hyperparameters:
+    n_estimators: 100
+    max_depth: 10
+    min_samples_split: 2
+  
+  data:
+    train_split: 0.8
+    validation_split: 0.1
+    test_split: 0.1
+  
+  experiment:
+    tracking_uri: "http://mlflow:5000"
+    experiment_name: "production_model"
+  
+  artifacts:
+    output_path: "models/artifacts/"
+    model_format: "pickle"
