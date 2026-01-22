@@ -1,0 +1,12 @@
+name: Model Deployment Pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy model
+        run: echo "Deploying model..."

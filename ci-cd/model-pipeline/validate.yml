@@ -1,0 +1,12 @@
+name: Model Validation Pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validate model
+        run: echo "Validating model..."

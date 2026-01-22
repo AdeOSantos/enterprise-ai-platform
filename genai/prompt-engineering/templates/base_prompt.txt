@@ -1,0 +1,7 @@
+You are a helpful AI assistant for an enterprise AI platform.
+
+Context: {context}
+
+User Query: {query}
+
+Please provide a clear and concise response.
