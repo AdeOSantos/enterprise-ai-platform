@@ -20,6 +20,21 @@ This project is intended to clearly signal **real-world MLOps and AI platform ex
 
 ---
 
+## 👨‍💻 Author
+
+<div align="center">
+
+### **Adalberto Santos**
+
+*Staff-Level Software Engineer | Event-Driven Architecture Specialist*
+
+[![GitHub](https://img.shields.io/badge/GitHub-adeosantos-black?style=flat&logo=github)](https://github.com/adeosantos)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://linkedin.com/in/adalbertosantos)
+
+</div>
+
+---
+
 ## ✨ What This Project Shows (at a Glance)
 
 - End-to-end **MLOps lifecycle**: training → validation → versioning → deployment
@@ -37,17 +52,17 @@ This project is intended to clearly signal **real-world MLOps and AI platform ex
 
 ```mermaid
 flowchart LR
-    A[Data Sources<br/>(Databases, Files, APIs, Events)]
-    B[Feature Engineering<br/>Pipelines]
-    C[Training & Validation<br/>(Python)]
-    D[Experiment Tracking<br/>& Model Registry<br/>(MLflow / Kubeflow)]
-    E[Versioned Model Artifacts]
-    F[Model Serving APIs<br/>(Java / Golang)]
-    G[Kubernetes Cluster]
-    H[Consumers<br/>(Apps, Services)]
-    I[Observability<br/>(Latency, Cost, Drift)]
-    J[CI/CD Pipelines]
-    K[Infrastructure as Code<br/>(Terraform)]
+    A["Data Sources\n(Databases, Files, APIs, Events)"]
+    B["Feature Engineering\nPipelines"]
+    C["Training & Validation\n(Python)"]
+    D["Experiment Tracking\n& Model Registry\n(MLflow / Kubeflow)"]
+    E["Versioned Model Artifacts"]
+    F["Model Serving APIs\n(Java / Golang)"]
+    G["Kubernetes Cluster"]
+    H["Consumers\n(Apps, Services)"]
+    I["Observability\n(Latency, Cost, Drift)"]
+    J["CI/CD Pipelines"]
+    K["Infrastructure as Code\n(Terraform)"]
 
     A --> B
     B --> C
@@ -129,62 +144,130 @@ enterprise-ai-platform/
 │
 ├── data/                         # Data management
 │   ├── raw/                      # Raw data ingestion
+│   │   ├── external/             # External data sources
+│   │   └── internal/             # Internal data sources
 │   ├── processed/                # Cleaned and transformed data
+│   │   ├── cleaned/              # Cleaned datasets
+│   │   └── normalized/           # Normalized datasets
 │   ├── features/                 # Feature store outputs
+│   │   ├── offline/              # Offline features for training
+│   │   └── online/               # Online features for serving
 │   └── samples/                  # Sample datasets for testing
+│       └── sample_dataset.csv
 │
 ├── training/                     # ML training lifecycle
 │   ├── pipelines/                # Training orchestration
 │   │   ├── train.py              # Main training pipeline
 │   │   ├── validate.py           # Model validation
+│   │   ├── promote.py            # Model promotion
 │   │   └── retrain_trigger.py   # Automated retraining logic
 │   ├── feature_engineering/      # Feature transformations
+│   │   ├── transformations.py    # Feature transformations
+│   │   └── validators.py         # Feature validation
 │   ├── evaluation/               # Model evaluation metrics
-│   └── experiments/              # Experiment tracking (MLflow)
+│   │   ├── metrics.py            # Evaluation metrics
+│   │   └── thresholds.yaml       # Quality thresholds
+│   ├── experiments/              # Experiment tracking (MLflow)
+│   │   └── experiment_runner.py
+│   ├── config/                   # Training configuration
+│   │   └── training.yaml
+│   └── tests/                    # Training tests
+│       └── test_training_pipeline.py
 │
 ├── models/                       # Model management
 │   ├── registry/                 # Model version registry
+│   │   └── mlflow_registry.py
 │   ├── artifacts/                # Serialized model files
-│   └── schemas/                  # Input/output schemas
+│   │   ├── model.pkl
+│   │   └── model.onnx
+│   ├── schemas/                  # Input/output schemas
+│   │   └── input_output_schema.json
+│   └── metadata/                 # Model documentation
+│       └── model_card.md
 │
 ├── serving/                      # Production inference APIs
 │   ├── api-java/                 # Java-based serving (Spring Boot)
-│   │   ├── src/
+│   │   ├── src/main/java/        # Java source code
+│   │   │   └── com/company/ai/
+│   │   │       ├── Application.java
+│   │   │       ├── controller/
+│   │   │       ├── service/
+│   │   │       ├── model/
+│   │   │       └── config/
+│   │   ├── src/main/resources/   # Application resources
+│   │   │   └── application.yml
 │   │   ├── Dockerfile
+│   │   ├── pom.xml               # Maven configuration
 │   │   └── README.md
 │   ├── api-golang/               # Go-based serving (high performance)
-│   │   ├── cmd/
-│   │   ├── internal/
+│   │   ├── cmd/server/           # Application entry point
+│   │   │   └── main.go
+│   │   ├── internal/             # Internal packages
+│   │   │   ├── handler/
+│   │   │   ├── service/
+│   │   │   ├── model/
+│   │   │   └── registry/
 │   │   ├── Dockerfile
+│   │   ├── go.mod                # Go module definition
 │   │   └── README.md
 │   └── protos/                   # gRPC service definitions
 │       └── inference.proto
 │
 ├── genai/                        # Generative AI components
-│   ├── llm-adapters/             # Provider abstractions (OpenAI, Anthropic)
+│   ├── llm-adapters/             # Provider abstractions
+│   │   ├── openai_adapter.py
+│   │   └── local_llm_adapter.py
 │   ├── prompt-engineering/       # Versioned prompts
+│   │   ├── templates/
+│   │   │   └── base_prompt.txt
+│   │   ├── versions/
+│   │   │   └── v1.yaml
+│   │   └── evaluator.py
 │   ├── agents/                   # Multi-step AI agents
-│   └── evaluations/              # GenAI quality metrics
+│   │   ├── orchestrator.py
+│   │   └── tools.py
+│   ├── evaluations/              # GenAI quality metrics
+│   │   ├── metrics.py
+│   │   └── test_cases.json
+│   └── config/
+│       └── genai.yaml
 │
 ├── observability/                # Production monitoring
 │   ├── metrics/                  # Custom metrics (Prometheus)
+│   │   ├── prometheus_rules.yaml
+│   │   └── exporter.py
 │   ├── tracing/                  # Distributed tracing (Jaeger/Tempo)
+│   │   └── otel_config.yaml
 │   ├── logging/                  # Structured logging
+│   │   └── log_config.yaml
 │   ├── drift-detection/          # Data and model drift
+│   │   ├── data_drift.py
+│   │   └── model_drift.py
 │   └── cost-monitoring/          # Inference cost tracking
+│       └── cost_estimator.py
 │
 ├── infra/                        # Infrastructure as Code
 │   ├── terraform/                # Cloud infrastructure
 │   │   ├── modules/              # Reusable modules
+│   │   │   ├── kubernetes/
+│   │   │   ├── registry/
+│   │   │   └── networking/
 │   │   ├── envs/                 # Environment configs
 │   │   │   ├── dev/
 │   │   │   ├── staging/
 │   │   │   └── prod/
+│   │   ├── main.tf
 │   │   └── README.md
 │   ├── kubernetes/               # K8s manifests
 │   │   ├── base/                 # Base configurations
+│   │   │   ├── deployment.yaml
+│   │   │   └── service.yaml
 │   │   └── overlays/             # Environment overlays (Kustomize)
+│   │       ├── dev/
+│   │       ├── staging/
+│   │       └── prod/
 │   └── helm/                     # Helm charts
+│       └── ai-platform-chart/
 │
 ├── ci-cd/                        # CI/CD pipelines
 │   ├── model-pipeline/           # ML pipeline automation
@@ -198,18 +281,21 @@ enterprise-ai-platform/
 │
 ├── scripts/                      # Utility scripts
 │   ├── bootstrap.sh              # Environment setup
-│   ├── local-cluster.sh          # Local K8s cluster (kind/minikube)
+│   ├── local_cluster.sh          # Local K8s cluster (kind/minikube)
 │   └── cleanup.sh                # Resource cleanup
 │
 ├── docs/                         # Documentation
 │   ├── architecture.md           # System architecture
-│   ├── mlops-flow.md             # MLOps workflow
-│   ├── genai-design.md           # GenAI patterns
-│   └── decision-records/         # ADRs (Architecture Decision Records)
+│   ├── mlops_flow.md             # MLOps workflow
+│   ├── genai_design.md           # GenAI patterns
+│   └── adr/                      # ADRs (Architecture Decision Records)
+│       └── 0001-platform-decisions.md
 │
 └── examples/                     # Usage examples
     ├── notebooks/                # Jupyter notebooks
+    │   └── exploration.ipynb
     └── api-usage/                # API client examples
+        └── curl_examples.sh
 ```
 
 Each folder maps directly to a **real enterprise responsibility**.
@@ -300,38 +386,54 @@ This mirrors how enterprises integrate LLMs responsibly.
 
 2. **Bootstrap the environment**
    ```bash
-   chmod +x scripts/bootstrap.sh
    ./scripts/bootstrap.sh
    ```
 
 3. **Start local Kubernetes cluster**
    ```bash
-   chmod +x scripts/local-cluster.sh
-   ./scripts/local-cluster.sh
+   ./scripts/local_cluster.sh
    ```
 
-4. **Build the project**
+4. **Build the Java project**
    ```bash
    ./gradlew build
    ```
 
-5. **Run training pipeline**
+5. **Install Python dependencies**
    ```bash
-   cd training/pipelines
-   python train.py
+   pip install -r requirements.txt
    ```
 
-6. **Deploy serving APIs**
+6. **Run training pipeline**
+   ```bash
+   python training/pipelines/train.py
+   ```
+
+7. **Deploy serving APIs**
    ```bash
    # Java API
    cd serving/api-java
-   docker build -t ai-platform/java-api .
-   kubectl apply -f deployment.yaml
+   mvn clean package
+   docker build -t ai-platform/java-api:latest .
+   kubectl apply -f ../../infra/kubernetes/base/deployment.yaml
+   kubectl apply -f ../../infra/kubernetes/base/service.yaml
 
    # Go API
-   cd serving/api-golang
-   docker build -t ai-platform/go-api .
-   kubectl apply -f deployment.yaml
+   cd ../api-golang
+   go build -o server cmd/server/main.go
+   docker build -t ai-platform/go-api:latest .
+   ```
+
+8. **Test the APIs**
+   ```bash
+   # Wait for pods to be ready
+   kubectl wait --for=condition=ready pod -l app=ai-inference --timeout=60s
+   
+   # Forward port to access API
+   kubectl port-forward svc/ai-inference-api 8080:80
+   
+   # Run test requests
+   ./examples/api-usage/curl_examples.sh
    ```
 
 ### Local Development
@@ -416,8 +518,8 @@ Contributions are welcome! This is a learning and portfolio project.
 - [MLOps Principles](https://ml-ops.org/)
 - [Kubernetes Documentation](https://kubernetes.io/docs/)
 - [Terraform Best Practices](https://www.terraform-best-practices.com/)
-- [GenAI Design Patterns](docs/genai-design.md)
-- [Architecture Decision Records](docs/decision-records/)
+- [GenAI Design Patterns](docs/genai_design.md)
+- [Architecture Decision Records](docs/adr/)
 
 ---
 
@@ -425,7 +527,8 @@ Contributions are welcome! This is a learning and portfolio project.
 
 **Adalberto Santos**
 - GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
+- Email: your.email@example.com
 
 ---
 
