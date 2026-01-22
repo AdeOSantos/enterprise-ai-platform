@@ -1,0 +1,16 @@
+{
+  "test_cases": [
+    {
+      "id": "test_001",
+      "query": "What is machine learning?",
+      "expected_topics": ["machine learning", "AI", "algorithms"],
+      "max_tokens": 200
+    },
+    {
+      "id": "test_002",
+      "query": "Explain neural networks",
+      "expected_topics": ["neural networks", "deep learning", "layers"],
+      "max_tokens": 250
+    }
+  ]
+}
